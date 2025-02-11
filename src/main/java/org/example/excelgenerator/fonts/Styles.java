@@ -60,4 +60,22 @@ public class Styles {
         boldStyle.setBorderRight(BorderStyle.NONE);
         return boldStyle;
     }
+
+    public static CellStyle getCellBasicStyle(Workbook workbook) {
+        Font boldFont = workbook.createFont();
+        boldFont.setFontName("Times New Roman");
+        boldFont.setBold(false);
+        boldFont.setFontHeightInPoints((short) 22);
+
+        // 🔵 Create cell style with bold font
+        CellStyle boldStyle = workbook.createCellStyle();
+        boldStyle.setFont(boldFont);
+        boldStyle.setAlignment(HorizontalAlignment.CENTER);
+        boldStyle.setVerticalAlignment(VerticalAlignment.CENTER);
+        boldStyle.setBorderBottom(BorderStyle.THIN);
+        boldStyle.setBorderTop(BorderStyle.THIN);
+        boldStyle.setBorderLeft(BorderStyle.THIN);
+        boldStyle.setBorderRight(BorderStyle.THIN);
+        return boldStyle;
+    }
 }

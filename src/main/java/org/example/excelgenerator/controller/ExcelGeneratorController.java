@@ -1,6 +1,5 @@
 package org.example.excelgenerator.controller;
 
-import lombok.Getter;
 import org.example.excelgenerator.dto.request.ExcelRequest;
 import org.example.excelgenerator.service.ExcelGeneratorService;
 import org.springframework.beans.factory.annotation.Autowired;

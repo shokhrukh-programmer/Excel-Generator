@@ -30,25 +30,26 @@ public class ExcelGeneratorService {
         for (int rowIndex = 0; rowIndex < staticData1.length; rowIndex++) {
             Row row = sheet.createRow(rowIndex);
 
+            if(rowIndex == 0) {
+                row.setHeightInPoints(73.5f);
+            }
+            else if(rowIndex == 15) {
+                row.setHeightInPoints(327f);
+            }
+            else if(rowIndex == 16) {
+                row.setHeightInPoints(180f);
+            }
+            else if(rowIndex == 18) {
+                row.setHeightInPoints(300f);
+            }
+            else if(rowIndex == 23) {
+                row.setHeightInPoints(48f);
+            }
+            else {
+                row.setHeightInPoints(32.25f);
+            }
             for (int colIndex = 0; colIndex < 4; colIndex++) {
-                if(rowIndex == 0) {
-                    row.setHeightInPoints(73.5f);
-                }
-                if(rowIndex == 15) {
-                    row.setHeightInPoints(327f);
-                }
-                if(rowIndex == 16) {
-                    row.setHeightInPoints(180f);
-                }
-                if(rowIndex == 18) {
-                    row.setHeightInPoints(300f);
-                }
-                if(rowIndex == 23) {
-                    row.setHeightInPoints(48f);
-                }
-                else {
-                    row.setHeightInPoints(32.25f);
-                }
+
 
                 Cell cell = row.createCell(colIndex);
                 cell.setCellValue(staticData1[rowIndex][colIndex]);
@@ -160,6 +161,7 @@ public class ExcelGeneratorService {
                     break;
                 }
 
+
                 if(rowIndex == 31) {
                     if(colIndex == 0) {
                         cell.setCellStyle(Styles.getCellStyle(workbook));
@@ -170,7 +172,17 @@ public class ExcelGeneratorService {
                     break;
                 }
 
-                if(rowIndex == 39) {
+                if(rowIndex >= 32 && rowIndex <= 39) {
+                    if(colIndex == 2) {
+                        cell.setCellStyle(Styles.getItalicStyle(workbook));
+                        continue;
+                    }
+
+                    cell.setCellStyle(Styles.getCellStyle(workbook));
+                    continue;
+                }
+
+                if(rowIndex == 40) {
                     if(colIndex == 0) {
                         cell.setCellStyle(Styles.getCellStyle(workbook));
                         continue;
@@ -178,6 +190,16 @@ public class ExcelGeneratorService {
                     sheet.addMergedRegion(new CellRangeAddress(39, 39, 1, 3));
                     cell.setCellStyle(Styles.getCellStyle(workbook));
                     break;
+                }
+
+                if(rowIndex >= 41 && rowIndex <= 43) {
+                    if(colIndex == 2) {
+                        cell.setCellStyle(Styles.getItalicStyle(workbook));
+                        continue;
+                    }
+
+                    cell.setCellStyle(Styles.getCellStyle(workbook));
+                    continue;
                 }
 
                 if(rowIndex == 44) {
@@ -190,14 +212,210 @@ public class ExcelGeneratorService {
                     break;
                 }
 
+                if(rowIndex >= 45 && rowIndex <= 52) {
+                    cell.setCellStyle(Styles.getCellStyle(workbook));
+                    continue;
+                }
+
+                if(rowIndex == 53) {
+                    if(colIndex == 0) {
+                        cell.setCellStyle(Styles.getCellStyle(workbook));
+                        continue;
+                    }
+                    sheet.addMergedRegion(new CellRangeAddress(53, 53, 1, 3));
+                    cell.setCellStyle(Styles.getCellStyle(workbook));
+                    break;
+                }
+
+                if(rowIndex >= 54 && rowIndex <= 57) {
+                    if(colIndex == 2) {
+                        cell.setCellStyle(Styles.getItalicStyle(workbook));
+                        continue;
+                    }
+                    cell.setCellStyle(Styles.getCellStyle(workbook));
+                    continue;
+                }
+
+                if(rowIndex == 58) {
+                    if(colIndex == 0) {
+                        cell.setCellStyle(Styles.getCellStyle(workbook));
+                        continue;
+                    }
+                    sheet.addMergedRegion(new CellRangeAddress(58, 58, 1, 3));
+                    cell.setCellStyle(Styles.getCellStyle(workbook));
+                    break;
+                }
+
+                if(rowIndex >= 59 && rowIndex <= 62) {
+                    if(colIndex == 2) {
+                        cell.setCellStyle(Styles.getItalicStyle(workbook));
+                        continue;
+                    }
+                    cell.setCellStyle(Styles.getCellStyle(workbook));
+                    continue;
+                }
+
+                if(rowIndex == 63) {
+                    if(colIndex == 0) {
+                        cell.setCellStyle(Styles.getCellStyle(workbook));
+                        continue;
+                    }
+                    sheet.addMergedRegion(new CellRangeAddress(63, 63, 1, 3));
+                    cell.setCellStyle(Styles.getCellStyle(workbook));
+                    break;
+                }
+
+                if(rowIndex >= 64 && rowIndex <= 66) {
+                    if(colIndex == 2) {
+                        cell.setCellStyle(Styles.getItalicStyle(workbook));
+                        continue;
+                    }
+                    cell.setCellStyle(Styles.getCellStyle(workbook));
+                    continue;
+                }
+
+                if(rowIndex == 67) {
+                    if(colIndex == 0) {
+                        cell.setCellStyle(Styles.getCellStyle(workbook));
+                        continue;
+                    }
+                    sheet.addMergedRegion(new CellRangeAddress(67, 67, 1, 3));
+                    cell.setCellStyle(Styles.getCellStyle(workbook));
+                    break;
+                }
+
+                if(rowIndex >= 68 && rowIndex <= 69) {
+                    if(colIndex == 2) {
+                        cell.setCellStyle(Styles.getItalicStyle(workbook));
+                        continue;
+                    }
+                    cell.setCellStyle(Styles.getCellStyle(workbook));
+                    continue;
+                }
+
+                if(rowIndex == 70) {
+                    if(colIndex == 0) {
+                        cell.setCellStyle(Styles.getCellStyle(workbook));
+                        continue;
+                    }
+                    sheet.addMergedRegion(new CellRangeAddress(70, 70, 1, 3));
+                    cell.setCellStyle(Styles.getCellStyle(workbook));
+                    break;
+                }
+
+                if(rowIndex >= 71 && rowIndex <= 81) {
+                    if(colIndex == 1) {
+                        cell.setCellStyle(Styles.getCellBasicStyle(workbook));
+                        continue;
+                    }
+                    cell.setCellStyle(Styles.getCellStyle(workbook));
+                    continue;
+                }
+
+                if(rowIndex == 82) {
+                    if(colIndex == 0) {
+                        cell.setCellStyle(Styles.getCellStyle(workbook));
+                        continue;
+                    }
+                    sheet.addMergedRegion(new CellRangeAddress(82, 82, 1, 3));
+                    cell.setCellStyle(Styles.getCellStyle(workbook));
+                    break;
+                }
+
+                if(rowIndex >= 83 && rowIndex <= 93) {
+                    if(colIndex == 1) {
+                        cell.setCellStyle(Styles.getCellBasicStyle(workbook));
+                        continue;
+                    }
+                    cell.setCellStyle(Styles.getCellStyle(workbook));
+                    continue;
+                }
+
+                if(rowIndex == 94) {
+                    if(colIndex == 0) {
+                        cell.setCellStyle(Styles.getCellStyle(workbook));
+                        continue;
+                    }
+                    sheet.addMergedRegion(new CellRangeAddress(94, 94, 1, 3));
+                    cell.setCellStyle(Styles.getCellStyle(workbook));
+                    break;
+                }
+
+                if(rowIndex >= 95 && rowIndex <= 105) {
+                    if(colIndex == 1) {
+                        cell.setCellStyle(Styles.getCellBasicStyle(workbook));
+                        continue;
+                    }
+                    cell.setCellStyle(Styles.getCellStyle(workbook));
+                    continue;
+                }
+
+                if(rowIndex == 106) {
+                    if(colIndex == 0) {
+                        cell.setCellStyle(Styles.getCellStyle(workbook));
+                        continue;
+                    }
+                    sheet.addMergedRegion(new CellRangeAddress(106, 106, 1, 3));
+                    cell.setCellStyle(Styles.getCellStyle(workbook));
+                    break;
+                }
+
+                if(rowIndex >= 107 && rowIndex <= 109) {
+                    if(colIndex == 2) {
+                        cell.setCellStyle(Styles.getItalicStyle(workbook));
+                        continue;
+                    }
+                    cell.setCellStyle(Styles.getCellStyle(workbook));
+                    continue;
+                }
+
+                if(rowIndex >= 110 && rowIndex <= 112) {
+                    if(colIndex == 2) {
+                        cell.setCellStyle(Styles.getItalicStyle(workbook));
+                        continue;
+                    }
+                    cell.setCellStyle(Styles.getCellStyle(workbook));
+                    continue;
+                }
+
+                if(rowIndex == 113) {
+                    if(colIndex == 0) {
+                        cell.setCellStyle(Styles.getCellStyle(workbook));
+                        continue;
+                    }
+                    sheet.addMergedRegion(new CellRangeAddress(113, 113, 1, 3));
+                    cell.setCellStyle(Styles.getCellStyle(workbook));
+                    break;
+                }
+
+                if(rowIndex >= 114 && rowIndex <= 116) {
+                    if(colIndex == 1) {
+                        cell.setCellStyle(Styles.getCellBasicStyle(workbook));
+                        continue;
+                    }
+                    cell.setCellStyle(Styles.getCellStyle(workbook));
+                    continue;
+                }
+
+                if(rowIndex == 117) {
+                    if(colIndex == 0) {
+                        cell.setCellStyle(Styles.getCellStyle(workbook));
+                        continue;
+                    }
+                    sheet.addMergedRegion(new CellRangeAddress(117, 117, 1, 3));
+                    cell.setCellStyle(Styles.getCellStyle(workbook));
+                    break;
+                }
 
                 cell.setCellStyle(boldStyle);
             }
+
+
         }
 
         sheet.setColumnWidth(0, (int) (8.43 * 256));
         sheet.setColumnWidth(1, (int) (103.29 * 256));
-        sheet.setColumnWidth(2, (int) (149.71 * 256));
+        sheet.setColumnWidth(2, (int) (200.71 * 256));
         sheet.setColumnWidth(3, (int) (147 * 256));
 
         ByteArrayOutputStream outputStream = new ByteArrayOutputStream();

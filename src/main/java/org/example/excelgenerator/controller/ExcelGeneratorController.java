@@ -1,7 +1,7 @@
 package org.example.excelgenerator.controller;
 
 import org.example.excelgenerator.dto.request.ExcelRequest;
-import org.example.excelgenerator.service.ExcelGeneratorService;
+import org.example.excelgenerator.service.ExcellGenerator;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpHeaders;
 import org.springframework.http.HttpStatus;
@@ -13,17 +13,17 @@ import java.io.IOException;
 @RestController
 @RequestMapping("/download-excel")
 public class ExcelGeneratorController {
-    private final ExcelGeneratorService excelGeneratorService;
+    private final ExcellGenerator excelGeneratorService;
 
     @Autowired
-    public ExcelGeneratorController(ExcelGeneratorService excelGeneratorService) {
+    public ExcelGeneratorController(ExcellGenerator excelGeneratorService) {
         this.excelGeneratorService = excelGeneratorService;
     }
 
-    @PostMapping("/generate")
-    public ResponseEntity<byte[]> generateExcel(@RequestBody ExcelRequest request) {
+    @GetMapping("/generate")
+    public ResponseEntity<byte[]> generateExcel() {
         try {
-            byte[] excelData = excelGeneratorService.generateExcel(request);
+            byte[] excelData = excelGeneratorService.generateExcel();
 
             HttpHeaders headers = new HttpHeaders();
             headers.add("Content-Disposition", "attachment; filename=data.xlsx");

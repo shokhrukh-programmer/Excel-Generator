@@ -20,10 +20,10 @@ public class ExcelGeneratorController {
         this.excelGeneratorService = excelGeneratorService;
     }
 
-    @GetMapping("/generate")
-    public ResponseEntity<byte[]> generateExcel() {
+    @PostMapping("/generate")
+    public ResponseEntity<byte[]> generateExcel(@RequestBody ExcelRequest request) {
         try {
-            byte[] excelData = excelGeneratorService.generateExcel();
+            byte[] excelData = excelGeneratorService.generateExcel(request);
 
             HttpHeaders headers = new HttpHeaders();
             headers.add("Content-Disposition", "attachment; filename=data.xlsx");

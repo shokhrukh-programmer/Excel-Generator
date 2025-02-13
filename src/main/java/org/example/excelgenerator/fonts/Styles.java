@@ -3,6 +3,7 @@ package org.example.excelgenerator.fonts;
 import org.apache.poi.ss.usermodel.*;
 import org.apache.poi.xssf.usermodel.XSSFColor;
 import org.apache.poi.xssf.usermodel.XSSFFont;
+import org.apache.poi.xssf.usermodel.XSSFWorkbook;
 
 public class Styles {
     public static CellStyle getItalicStyle(Workbook workbook) {
@@ -279,5 +280,77 @@ public class Styles {
         italicStyle.setBorderRight(BorderStyle.THIN);
 
         return italicStyle;
+    }
+
+    public static CellStyle getCellStyleRed(XSSFWorkbook workbook) {
+        Font italicBoldFont = workbook.createFont();
+        italicBoldFont.setFontName("Times New Roman");
+        italicBoldFont.setBold(false);
+        italicBoldFont.setItalic(false);
+        italicBoldFont.setFontHeightInPoints((short) 18);
+        italicBoldFont.setColor(IndexedColors.RED.getIndex());
+
+        // 🔴 Create italic cell style
+        CellStyle italicStyle = workbook.createCellStyle();
+        italicStyle.setWrapText(true);
+        italicStyle.setFont(italicBoldFont);
+        italicStyle.setAlignment(HorizontalAlignment.CENTER);
+        italicStyle.setVerticalAlignment(VerticalAlignment.CENTER);
+
+        italicStyle.setBorderBottom(BorderStyle.THIN);
+        italicStyle.setBorderTop(BorderStyle.THIN);
+        italicStyle.setBorderLeft(BorderStyle.THIN);
+        italicStyle.setBorderRight(BorderStyle.THIN);
+
+        return italicStyle;
+    }
+
+    public static CellStyle getCellStyleRedSize(XSSFWorkbook workbook) {
+        Font italicBoldFont = workbook.createFont();
+        italicBoldFont.setFontName("Times New Roman");
+        italicBoldFont.setBold(false);
+        italicBoldFont.setItalic(false);
+        italicBoldFont.setFontHeightInPoints((short) 22);
+        italicBoldFont.setColor(IndexedColors.RED.getIndex());
+
+        // 🔴 Create italic cell style
+        CellStyle italicStyle = workbook.createCellStyle();
+        italicStyle.setWrapText(true);
+        italicStyle.setFont(italicBoldFont);
+        italicStyle.setAlignment(HorizontalAlignment.CENTER);
+        italicStyle.setVerticalAlignment(VerticalAlignment.CENTER);
+
+        italicStyle.setBorderBottom(BorderStyle.THIN);
+        italicStyle.setBorderTop(BorderStyle.THIN);
+        italicStyle.setBorderLeft(BorderStyle.THIN);
+        italicStyle.setBorderRight(BorderStyle.THIN);
+
+        return italicStyle;
+    }
+
+    public static CellStyle getCellBasicStyleWithBackgroundGreenBolt(XSSFWorkbook workbook) {
+        Font boldFont = workbook.createFont();
+        boldFont.setFontName("Times New Roman");
+        boldFont.setBold(true);
+        boldFont.setFontHeightInPoints((short) 22);
+
+        XSSFColor color2 = new XSSFColor(new byte[]{(byte) 198, (byte) 224, (byte) 180}, null);
+        // 🔵 Create cell style with bold font
+        CellStyle boldStyle = workbook.createCellStyle();
+        boldStyle.setFillForegroundColor(color2);
+
+        boldStyle.setFont(boldFont);
+        boldStyle.setFillPattern(FillPatternType.SOLID_FOREGROUND);
+
+        // 🔵 Create cell style with bold font
+        boldStyle.setWrapText(true);
+        boldStyle.setFont(boldFont);
+        boldStyle.setAlignment(HorizontalAlignment.CENTER);
+        boldStyle.setVerticalAlignment(VerticalAlignment.CENTER);
+        boldStyle.setBorderBottom(BorderStyle.THIN);
+        boldStyle.setBorderTop(BorderStyle.THIN);
+        boldStyle.setBorderLeft(BorderStyle.THIN);
+        boldStyle.setBorderRight(BorderStyle.THIN);
+        return boldStyle;
     }
 }

@@ -1,7 +1,7 @@
 package org.example.excelgenerator.controller;
 
 import org.example.excelgenerator.dto.request.ExcelRequest;
-import org.example.excelgenerator.service.ExcellGenerator;
+import org.example.excelgenerator.service.ExcelGenerator;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpHeaders;
 import org.springframework.http.HttpStatus;
@@ -13,10 +13,10 @@ import java.io.IOException;
 @RestController
 @RequestMapping("/download-excel")
 public class ExcelGeneratorController {
-    private final ExcellGenerator excelGeneratorService;
+    private final ExcelGenerator excelGeneratorService;
 
     @Autowired
-    public ExcelGeneratorController(ExcellGenerator excelGeneratorService) {
+    public ExcelGeneratorController(ExcelGenerator excelGeneratorService) {
         this.excelGeneratorService = excelGeneratorService;
     }
 

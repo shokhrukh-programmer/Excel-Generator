@@ -15,7 +15,7 @@ import java.io.IOException;
 import java.io.InputStream;
 
 @Service
-public class ExcellGenerator {
+public class ExcelGenerator {
     public byte[] generateExcel(ExcelRequest excelRequest) throws IOException {
         XSSFWorkbook workbook = new XSSFWorkbook();
 
@@ -39,25 +39,27 @@ public class ExcellGenerator {
 
         rowIndex += 1;
 
-//        InputStream inputStream = new FileInputStream("C:\\Users\\user\\IdeaProjects\\ExcelGenerator\\src\\main\\resources\\static\\img.png");  // Replace with your image path
-//        byte[] imageBytes = inputStream.readAllBytes();
-//        int pictureIdx = workbook.addPicture(imageBytes, Workbook.PICTURE_TYPE_PNG);
-//        inputStream.close();
-//
-//        // 🔹 Create a drawing object
-//        Drawing<?> drawing = sheet.createDrawingPatriarch();
-//
-//        // 🔹 Define anchor (Position of image)
-//        XSSFClientAnchor anchor = new XSSFClientAnchor();
-//        anchor.setCol1(3);  // Column C (index 2)
-//        anchor.setRow1(1);  // Start at row 1
-//        anchor.setCol2(3);  // Span to next column (optional)
-//        anchor.setRow2(5);  // End at row 5
-//        anchor.setAnchorType(ClientAnchor.AnchorType.MOVE_AND_RESIZE);// Image moves & resizes with cells
-//
-//        // 🔹 Insert the picture
-//        Picture picture = drawing.createPicture(anchor, pictureIdx);
-//        picture.resize();
+        InputStream inputStream = new FileInputStream("C:\\Users\\user\\IdeaProjects\\ExcelGenerator\\src\\main\\resources\\static\\img.png");  // Replace with your image path
+        byte[] imageBytes = inputStream.readAllBytes();
+        int pictureIdx = workbook.addPicture(imageBytes, Workbook.PICTURE_TYPE_PNG);
+        inputStream.close();
+
+        // 🔹 Create a drawing object
+        Drawing<?> drawing = sheet.createDrawingPatriarch();
+
+        // 🔹 Define anchor (Position of image)
+        XSSFClientAnchor anchor = new XSSFClientAnchor();
+        anchor.setDx1(100 * 9525); // Move a bit from the left (10 pixels)
+        anchor.setDy1(5 * 9525);
+        anchor.setCol1(3);  // Column C
+        anchor.setRow1(2);  // Row 2
+        anchor.setCol2(4);  // Column E
+        anchor.setRow2(6);
+        anchor.setAnchorType(ClientAnchor.AnchorType.MOVE_AND_RESIZE);// Image moves & resizes with cells
+
+        // 🔹 Insert the picture
+        Picture picture = drawing.createPicture(anchor, pictureIdx);
+        picture.resize(0.75);
 
         for (int rowNum = 2; rowNum <= 8; rowNum++) {
             Row row2 = sheet.createRow(rowIndex);
@@ -892,7 +894,7 @@ public class ExcellGenerator {
                     raw22cell3.setCellStyle(Styles.getItalicStyle(workbook));
                     Cell raw22cell4 = row55.createCell(3);
                     raw22cell4.setCellValue(excelRequest.getPeriodOne());
-                    raw22cell4.setCellStyle(Styles.getCellBasicStyle(workbook));
+                    raw22cell4.setCellStyle(Styles.getCellBasicStyleWithBackgroundGreen(workbook));
                     break;
 
                 case 3:
@@ -906,7 +908,7 @@ public class ExcellGenerator {
                     raw3cell3.setCellStyle(Styles.getItalicStyle(workbook));
                     Cell raw3cell4 = row55.createCell(3);
                     raw3cell4.setCellValue(excelRequest.getLast12MonthsTurnover());
-                    raw3cell4.setCellStyle(Styles.getCellBasicStyle(workbook));
+                    raw3cell4.setCellStyle(Styles.getCellBasicStyleWithBackgroundGreen(workbook));
                     break;
 
                 case 4:
@@ -919,7 +921,7 @@ public class ExcellGenerator {
                     raw4cell3.setCellStyle(Styles.getItalicStyle(workbook));
                     Cell raw4cell4 = row55.createCell(3);
                     raw4cell4.setCellValue(excelRequest.getPeriodTwo());
-                    raw4cell4.setCellStyle(Styles.getCellBasicStyle(workbook));
+                    raw4cell4.setCellStyle(Styles.getCellBasicStyleWithBackgroundGreen(workbook));
                     break;
 
                 case 5:
@@ -1182,6 +1184,9 @@ public class ExcellGenerator {
                             " Бунда, доимий пул оқимига эга мижозлар дейилганда жорий ва янги \nкредитлари билан бирга ҳисобланганда қарз юки 50% дан (50% ҳам киради) \nбаланд бўлмаслиги ва сўнги 12 ойда ҳисоб рақамида узликсиз тушуми \nмавжуд бўлиши (асосий фаолияти мавсумий бўлганда, тушуми \nузликсизлигига ўрнатилган талаб бундан мустасно) лозим.\n" +
                             "- Охирги 12 ой ичида мижознинг 50% дан юқори улушга эга таъсисчиси \nўзгарганда (яқин қариндошлар ўртасида ўзгариш бундан мустасно), камида \n125% фоиз ликвидли мол-мулк гарови тақдим этилиш лозим.\"\n");
                     raw2cell3.setCellStyle(Styles.getItalicStyle(workbook));
+                    Cell raw2cell4 = row72.createCell(3);
+                    raw2cell4.setCellValue(excelRequest.getAddress());
+                    raw2cell4.setCellStyle(Styles.getCellBasicStyle(workbook));
                     break;
 
                 case 3:
@@ -1193,6 +1198,9 @@ public class ExcellGenerator {
                     raw3cell2.setCellStyle(Styles.getCellBasicStyle(workbook));
                     Cell raw3cell3 = row72.createCell(2);
                     raw3cell3.setCellStyle(Styles.getItalicStyle(workbook));
+                    Cell raw3cell4 = row72.createCell(3);
+                    raw3cell4.setCellValue(excelRequest.getName());
+                    raw3cell4.setCellStyle(Styles.getCellBasicStyle(workbook));
                     break;
 
                 case 4:
@@ -1204,6 +1212,9 @@ public class ExcellGenerator {
                     raw4cell2.setCellStyle(Styles.getCellBasicStyle(workbook));
                     Cell raw4cell3 = row72.createCell(2);
                     raw4cell3.setCellStyle(Styles.getItalicStyle(workbook));
+                    Cell raw4cell4 = row72.createCell(3);
+                    raw4cell4.setCellValue(excelRequest.getOwner());
+                    raw4cell4.setCellStyle(Styles.getCellBasicStyle(workbook));
                     break;
 
                 case 5:
@@ -1215,6 +1226,9 @@ public class ExcellGenerator {
                     raw5cell2.setCellStyle(Styles.getCellBasicStyle(workbook));
                     Cell raw5cell3 = row72.createCell(2);
                     raw5cell3.setCellStyle(Styles.getItalicStyle(workbook));
+                    Cell raw5cell4 = row72.createCell(3);
+                    raw5cell4.setCellValue(excelRequest.getOwnershipDocument());
+                    raw5cell4.setCellStyle(Styles.getCellBasicStyle(workbook));
                     break;
 
                 case 6:
@@ -1226,6 +1240,9 @@ public class ExcellGenerator {
                     raw6cell2.setCellStyle(Styles.getCellBasicStyle(workbook));
                     Cell raw6cell3 = row72.createCell(2);
                     raw6cell3.setCellStyle(Styles.getItalicStyle(workbook));
+                    Cell raw6cell4 = row72.createCell(3);
+                    raw6cell4.setCellValue(excelRequest.getCadastralExtract());
+                    raw6cell4.setCellStyle(Styles.getCellBasicStyle(workbook));
                     break;
 
                 case 7:
@@ -1237,6 +1254,9 @@ public class ExcellGenerator {
                     raw7cell2.setCellStyle(Styles.getCellBasicStyle(workbook));
                     Cell raw7cell3 = row72.createCell(2);
                     raw7cell3.setCellStyle(Styles.getItalicStyle(workbook));
+                    Cell raw7cell4 = row72.createCell(3);
+                    raw7cell4.setCellValue(excelRequest.getNoRegisteredResidents());
+                    raw7cell4.setCellStyle(Styles.getCellBasicStyle(workbook));
                     break;
 
                 case 8:
@@ -1248,6 +1268,9 @@ public class ExcellGenerator {
                     Cell raw8cell3 = row72.createCell(2);
                     row72.setHeightInPoints(65);
                     raw8cell3.setCellStyle(Styles.getItalicStyle(workbook));
+                    Cell raw8cell4 = row72.createCell(3);
+                    raw8cell4.setCellValue(excelRequest.getRestrictionInfo());
+                    raw8cell4.setCellStyle(Styles.getCellBasicStyle(workbook));
                     break;
                 case 9:
                     Cell raw9cell1 = row72.createCell(0);
@@ -1258,6 +1281,9 @@ public class ExcellGenerator {
                     Cell raww9cell3 = row72.createCell(2);
                     row72.setHeightInPoints(65);
                     raww9cell3.setCellStyle(Styles.getItalicStyle(workbook));
+                    Cell raww9cell4 = row72.createCell(3);
+                    raww9cell4.setCellValue(excelRequest.getIndependentAppraisalPrice());
+                    raww9cell4.setCellStyle(Styles.getCellBasicStyle(workbook));
                     break;
                 case 10:
                     Cell raw10cell1 = row72.createCell(0);
@@ -1268,6 +1294,9 @@ public class ExcellGenerator {
                     Cell raww10cell3 = row72.createCell(2);
                     row72.setHeightInPoints(65);
                     raww10cell3.setCellStyle(Styles.getItalicStyle(workbook));
+                    Cell raww10cell4 = row72.createCell(3);
+                    raww10cell4.setCellValue(excelRequest.getEValuationPrice());
+                    raww10cell4.setCellStyle(Styles.getCellBasicStyle(workbook));
                     break;
                 case 11:
                     Cell raw11cell1 = row72.createCell(0);
@@ -1278,6 +1307,9 @@ public class ExcellGenerator {
                     Cell raww11cell3 = row72.createCell(2);
                     row72.setHeightInPoints(65);
                     raww11cell3.setCellStyle(Styles.getItalicStyle(workbook));
+                    Cell raww11cell4 = row72.createCell(3);
+                    raww11cell4.setCellValue(excelRequest.getBankAppraisalPrice());
+                    raww11cell4.setCellStyle(Styles.getCellBasicStyleWithBackgroundGreenBolt(workbook));
                     break;
                 case 12:
                     Cell raw12cell1 = row72.createCell(0);
@@ -1288,6 +1320,9 @@ public class ExcellGenerator {
                     Cell raw12cell3 = row72.createCell(2);
                     row72.setHeightInPoints(65);
                     raw12cell3.setCellStyle(Styles.getItalicStyle(workbook));
+                    Cell raw12cell4 = row72.createCell(3);
+                    raw12cell4.setCellValue(excelRequest.getOwnerConsent());
+                    raw12cell4.setCellStyle(Styles.getCellBasicStyle(workbook));
                     break;
             }
 
@@ -1336,6 +1371,9 @@ public class ExcellGenerator {
                             " Бунда, доимий пул оқимига эга мижозлар дейилганда жорий ва янги \nкредитлари билан бирга ҳисобланганда қарз юки 50% дан (50% ҳам киради) \nбаланд бўлмаслиги ва сўнги 12 ойда ҳисоб рақамида узликсиз тушуми \nмавжуд бўлиши (асосий фаолияти мавсумий бўлганда, тушуми \nузликсизлигига ўрнатилган талаб бундан мустасно) лозим.\n" +
                             "- Охирги 12 ой ичида мижознинг 50% дан юқори улушга эга таъсисчиси \nўзгарганда (яқин қариндошлар ўртасида ўзгариш бундан мустасно), камида \n125% фоиз ликвидли мол-мулк гарови тақдим этилиш лозим.\"\n");
                     raw2cell3.setCellStyle(Styles.getItalicStyle(workbook));
+                    Cell raw2cell4 = row82.createCell(3);
+                    raw2cell4.setCellValue(excelRequest.getAddress1());
+                    raw2cell4.setCellStyle(Styles.getCellBasicStyle(workbook));
                     break;
 
                 case 3:
@@ -1347,6 +1385,9 @@ public class ExcellGenerator {
                     raw3cell2.setCellStyle(Styles.getCellBasicStyle(workbook));
                     Cell raw3cell3 = row82.createCell(2);
                     raw3cell3.setCellStyle(Styles.getItalicStyle(workbook));
+                    Cell raw3cell4 = row82.createCell(3);
+                    raw3cell4.setCellValue(excelRequest.getName1());
+                    raw3cell4.setCellStyle(Styles.getCellBasicStyle(workbook));
                     break;
 
                 case 4:
@@ -1358,6 +1399,9 @@ public class ExcellGenerator {
                     raw4cell2.setCellStyle(Styles.getCellBasicStyle(workbook));
                     Cell raw4cell3 = row82.createCell(2);
                     raw4cell3.setCellStyle(Styles.getItalicStyle(workbook));
+                    Cell raw4cell4 = row82.createCell(3);
+                    raw4cell4.setCellValue(excelRequest.getOwner1());
+                    raw4cell4.setCellStyle(Styles.getCellBasicStyle(workbook));
                     break;
 
                 case 5:
@@ -1369,6 +1413,9 @@ public class ExcellGenerator {
                     raw5cell2.setCellStyle(Styles.getCellBasicStyle(workbook));
                     Cell raw5cell3 = row82.createCell(2);
                     raw5cell3.setCellStyle(Styles.getItalicStyle(workbook));
+                    Cell raw5cell4 = row82.createCell(3);
+                    raw5cell4.setCellValue(excelRequest.getOwnershipDocument1());
+                    raw5cell4.setCellStyle(Styles.getCellBasicStyle(workbook));
                     break;
 
                 case 6:
@@ -1380,6 +1427,9 @@ public class ExcellGenerator {
                     raw6cell2.setCellStyle(Styles.getCellBasicStyle(workbook));
                     Cell raw6cell3 = row82.createCell(2);
                     raw6cell3.setCellStyle(Styles.getItalicStyle(workbook));
+                    Cell raw6cell4 = row82.createCell(3);
+                    raw6cell4.setCellValue(excelRequest.getCadastralExtract1());
+                    raw6cell4.setCellStyle(Styles.getCellBasicStyle(workbook));
                     break;
 
                 case 7:
@@ -1391,6 +1441,9 @@ public class ExcellGenerator {
                     raw7cell2.setCellStyle(Styles.getCellBasicStyle(workbook));
                     Cell raw7cell3 = row82.createCell(2);
                     raw7cell3.setCellStyle(Styles.getItalicStyle(workbook));
+                    Cell raw7cell4 = row82.createCell(3);
+                    raw7cell4.setCellValue(excelRequest.getNoRegisteredResidents1());
+                    raw7cell4.setCellStyle(Styles.getCellBasicStyle(workbook));
                     break;
 
                 case 8:
@@ -1402,6 +1455,9 @@ public class ExcellGenerator {
                     Cell raw8cell3 = row82.createCell(2);
                     row82.setHeightInPoints(65);
                     raw8cell3.setCellStyle(Styles.getItalicStyle(workbook));
+                    Cell raw8cell4 = row82.createCell(3);
+                    raw8cell4.setCellValue(excelRequest.getRestrictionInfo1());
+                    raw8cell4.setCellStyle(Styles.getCellBasicStyle(workbook));
                     break;
                 case 9:
                     Cell raw9cell1 = row82.createCell(0);
@@ -1412,6 +1468,9 @@ public class ExcellGenerator {
                     Cell raww9cell3 = row82.createCell(2);
                     row82.setHeightInPoints(65);
                     raww9cell3.setCellStyle(Styles.getItalicStyle(workbook));
+                    Cell raww9cell4 = row82.createCell(3);
+                    raww9cell4.setCellValue(excelRequest.getIndependentAppraisalPrice1());
+                    raww9cell4.setCellStyle(Styles.getCellBasicStyle(workbook));
                     break;
                 case 10:
                     Cell raw10cell1 = row82.createCell(0);
@@ -1422,6 +1481,9 @@ public class ExcellGenerator {
                     Cell raww10cell3 = row82.createCell(2);
                     row82.setHeightInPoints(65);
                     raww10cell3.setCellStyle(Styles.getItalicStyle(workbook));
+                    Cell raww10cell4 = row82.createCell(3);
+                    raww10cell4.setCellValue(excelRequest.getEValuationPrice1());
+                    raww10cell4.setCellStyle(Styles.getCellBasicStyle(workbook));
                     break;
                 case 11:
                     Cell raw11cell1 = row82.createCell(0);
@@ -1432,6 +1494,9 @@ public class ExcellGenerator {
                     Cell raww11cell3 = row82.createCell(2);
                     row82.setHeightInPoints(65);
                     raww11cell3.setCellStyle(Styles.getItalicStyle(workbook));
+                    Cell raww11cell4 = row82.createCell(3);
+                    raww11cell4.setCellValue(excelRequest.getBankAppraisalPrice1());
+                    raww11cell4.setCellStyle(Styles.getCellBasicStyleWithBackgroundGreenBolt(workbook));
                     break;
                 case 12:
                     Cell raw12cell1 = row82.createCell(0);
@@ -1442,6 +1507,9 @@ public class ExcellGenerator {
                     Cell raw12cell3 = row82.createCell(2);
                     row82.setHeightInPoints(65);
                     raw12cell3.setCellStyle(Styles.getItalicStyle(workbook));
+                    Cell raw12cell4 = row82.createCell(3);
+                    raw12cell4.setCellValue(excelRequest.getOwnerConsent1());
+                    raw12cell4.setCellStyle(Styles.getCellBasicStyle(workbook));
                     break;
             }
 
@@ -1490,6 +1558,9 @@ public class ExcellGenerator {
                             " Бунда, доимий пул оқимига эга мижозлар дейилганда жорий ва янги \nкредитлари билан бирга ҳисобланганда қарз юки 50% дан (50% ҳам киради) \nбаланд бўлмаслиги ва сўнги 12 ойда ҳисоб рақамида узликсиз тушуми \nмавжуд бўлиши (асосий фаолияти мавсумий бўлганда, тушуми \nузликсизлигига ўрнатилган талаб бундан мустасно) лозим.\n" +
                             "- Охирги 12 ой ичида мижознинг 50% дан юқори улушга эга таъсисчиси \nўзгарганда (яқин қариндошлар ўртасида ўзгариш бундан мустасно), камида \n125% фоиз ликвидли мол-мулк гарови тақдим этилиш лозим.\"\n");
                     raw2cell3.setCellStyle(Styles.getItalicStyle(workbook));
+                    Cell raw2cell4 = row84.createCell(3);
+                    raw2cell4.setCellValue(excelRequest.getAddress2());
+                    raw2cell4.setCellStyle(Styles.getCellBasicStyle(workbook));
                     break;
 
                 case 3:
@@ -1501,6 +1572,9 @@ public class ExcellGenerator {
                     raw3cell2.setCellStyle(Styles.getCellBasicStyle(workbook));
                     Cell raw3cell3 = row84.createCell(2);
                     raw3cell3.setCellStyle(Styles.getItalicStyle(workbook));
+                    Cell raw3cell4 = row84.createCell(3);
+                    raw3cell4.setCellValue(excelRequest.getName2());
+                    raw3cell4.setCellStyle(Styles.getCellBasicStyle(workbook));
                     break;
 
                 case 4:
@@ -1512,6 +1586,9 @@ public class ExcellGenerator {
                     raw4cell2.setCellStyle(Styles.getCellBasicStyle(workbook));
                     Cell raw4cell3 = row84.createCell(2);
                     raw4cell3.setCellStyle(Styles.getItalicStyle(workbook));
+                    Cell raw4cell4 = row84.createCell(3);
+                    raw4cell4.setCellValue(excelRequest.getOwner2());
+                    raw4cell4.setCellStyle(Styles.getCellBasicStyle(workbook));
                     break;
 
                 case 5:
@@ -1523,6 +1600,9 @@ public class ExcellGenerator {
                     raw5cell2.setCellStyle(Styles.getCellBasicStyle(workbook));
                     Cell raw5cell3 = row84.createCell(2);
                     raw5cell3.setCellStyle(Styles.getItalicStyle(workbook));
+                    Cell raw5cell4 = row84.createCell(3);
+                    raw5cell4.setCellValue(excelRequest.getOwnershipDocument2());
+                    raw5cell4.setCellStyle(Styles.getCellBasicStyle(workbook));
                     break;
 
                 case 6:
@@ -1534,6 +1614,9 @@ public class ExcellGenerator {
                     raw6cell2.setCellStyle(Styles.getCellBasicStyle(workbook));
                     Cell raw6cell3 = row84.createCell(2);
                     raw6cell3.setCellStyle(Styles.getItalicStyle(workbook));
+                    Cell raw6cell4 = row84.createCell(3);
+                    raw6cell4.setCellValue(excelRequest.getCadastralExtract2());
+                    raw6cell4.setCellStyle(Styles.getCellBasicStyle(workbook));
                     break;
 
                 case 7:
@@ -1545,6 +1628,9 @@ public class ExcellGenerator {
                     raw7cell2.setCellStyle(Styles.getCellBasicStyle(workbook));
                     Cell raw7cell3 = row84.createCell(2);
                     raw7cell3.setCellStyle(Styles.getItalicStyle(workbook));
+                    Cell raw7cell4 = row84.createCell(3);
+                    raw7cell4.setCellValue(excelRequest.getNoRegisteredResidents2());
+                    raw7cell4.setCellStyle(Styles.getCellBasicStyle(workbook));
                     break;
 
                 case 8:
@@ -1556,6 +1642,9 @@ public class ExcellGenerator {
                     Cell raw8cell3 = row84.createCell(2);
                     row84.setHeightInPoints(65);
                     raw8cell3.setCellStyle(Styles.getItalicStyle(workbook));
+                    Cell raw8cell4 = row84.createCell(3);
+                    raw8cell4.setCellValue(excelRequest.getRestrictionInfo2());
+                    raw8cell4.setCellStyle(Styles.getCellBasicStyle(workbook));
                     break;
                 case 9:
                     Cell raw9cell1 = row84.createCell(0);
@@ -1566,6 +1655,9 @@ public class ExcellGenerator {
                     Cell raww9cell3 = row84.createCell(2);
                     row84.setHeightInPoints(65);
                     raww9cell3.setCellStyle(Styles.getItalicStyle(workbook));
+                    Cell raww9cell4 = row84.createCell(3);
+                    raww9cell4.setCellValue(excelRequest.getIndependentAppraisalPrice2());
+                    raww9cell4.setCellStyle(Styles.getCellBasicStyle(workbook));
                     break;
                 case 10:
                     Cell raw10cell1 = row84.createCell(0);
@@ -1576,6 +1668,9 @@ public class ExcellGenerator {
                     Cell raww10cell3 = row84.createCell(2);
                     row84.setHeightInPoints(65);
                     raww10cell3.setCellStyle(Styles.getItalicStyle(workbook));
+                    Cell raww10cell4 = row84.createCell(3);
+                    raww10cell4.setCellValue(excelRequest.getEValuationPrice2());
+                    raww10cell4.setCellStyle(Styles.getCellBasicStyle(workbook));
                     break;
                 case 11:
                     Cell raw11cell1 = row84.createCell(0);
@@ -1586,6 +1681,9 @@ public class ExcellGenerator {
                     Cell raww11cell3 = row84.createCell(2);
                     row84.setHeightInPoints(65);
                     raww11cell3.setCellStyle(Styles.getItalicStyle(workbook));
+                    Cell raww11cell4 = row84.createCell(3);
+                    raww11cell4.setCellValue(excelRequest.getBankAppraisalPrice2());
+                    raww11cell4.setCellStyle(Styles.getCellBasicStyleWithBackgroundGreenBolt(workbook));
                     break;
                 case 12:
                     Cell raw12cell1 = row84.createCell(0);
@@ -1596,6 +1694,9 @@ public class ExcellGenerator {
                     Cell raw12cell3 = row84.createCell(2);
                     row84.setHeightInPoints(65);
                     raw12cell3.setCellStyle(Styles.getItalicStyle(workbook));
+                    Cell raww12cell4 = row84.createCell(3);
+                    raww12cell4.setCellValue(excelRequest.getOwnerConsent2());
+                    raww12cell4.setCellStyle(Styles.getCellBasicStyle(workbook));
                     break;
             }
 
@@ -1631,6 +1732,9 @@ public class ExcellGenerator {
                     raw22cell2.setCellValue("Суғурта ташкилоти номи");
                     raw22cell2.setCellStyle(Styles.getCellStyle(workbook));
                     Cell raw22cell3 = row108.createCell(2);
+                    Cell raw2cell4 = row108.createCell(3);
+                    raw2cell4.setCellValue(excelRequest.getInsuranceCompanyName());
+                    raw2cell4.setCellStyle(Styles.getCellBasicStyle(workbook));
                     break;
 
                 case 3:
@@ -1642,6 +1746,9 @@ public class ExcellGenerator {
                     Cell raw3cell3 = row108.createCell(2);
                     raw3cell3.setCellValue("\"Риск\" департаменти маълумотига асосан");
                     raw3cell3.setCellStyle(Styles.getItalicStyle(workbook));
+                    Cell raw3cell4 = row108.createCell(3);
+                    raw3cell4.setCellValue(excelRequest.getFinancialStability());
+                    raw3cell4.setCellStyle(Styles.getCellBasicStyle(workbook));
                     break;
 
                 case 4:
@@ -1651,6 +1758,9 @@ public class ExcellGenerator {
                     raw4cell2.setCellValue("Суғурта суммаси");
                     raw4cell2.setCellStyle(Styles.getCellStyle(workbook));
                     Cell raw4cell3 = row108.createCell(2);
+                    Cell raw4cell4 = row108.createCell(3);
+                    raw4cell4.setCellValue(excelRequest.getInsuranceAmount());
+                    raw4cell4.setCellStyle(Styles.getCellStyle(workbook));
                     break;
                 case 5:
                     Cell raw5cell1 = row108.createCell(0);
@@ -1662,6 +1772,9 @@ public class ExcellGenerator {
                     Cell raw5cell3 = row108.createCell(2);
                     raw5cell3.setCellValue("Жами таъминот");
                     raw5cell3.setCellStyle(Styles.getBackground(workbook));
+                    Cell raw5cell4 = row108.createCell(3);
+                    raw5cell4.setCellValue(excelRequest.getTotalGuaranteeAmount());
+                    raw5cell4.setCellStyle(Styles.getBackground(workbook));
                     break;
 
                 case 6:
@@ -1672,6 +1785,9 @@ public class ExcellGenerator {
                     Cell raw6cell3 = row108.createCell(2);
                     raw6cell3.setCellValue("Мулкий таъминот");
                     raw6cell3.setCellStyle(Styles.getBackground(workbook));
+                    Cell raw6cell4 = row108.createCell(3);
+                    raw6cell4.setCellValue(excelRequest.getPropertyGuaranteeAmount());
+                    raw6cell4.setCellStyle(Styles.getBackground(workbook));
                     break;
 
                 case 7:
@@ -1682,6 +1798,9 @@ public class ExcellGenerator {
                     Cell raw7cell3 = row108.createCell(2);
                     raw7cell3.setCellValue("Номулкий таъминот");
                     raw7cell3.setCellStyle(Styles.getBackground(workbook));
+                    Cell raw7cell4 = row108.createCell(3);
+                    raw7cell4.setCellValue(excelRequest.getNonPropertyGuaranteeAmount());
+                    raw7cell4.setCellStyle(Styles.getBackground(workbook));
                     break;
             }
 
@@ -1715,6 +1834,9 @@ public class ExcellGenerator {
                     raw22cell2.setCellStyle(Styles.getCellBasicStyle(workbook));
                     Cell raw22cell3 = row115.createCell(2);
                     raw22cell3.setCellStyle(Styles.getCellBasicStyle(workbook));
+                    Cell raw2cell4 = row115.createCell(3);
+                    raw2cell4.setCellValue(excelRequest.getBankConclusion());
+                    raw2cell4.setCellStyle(Styles.getCellBasicStyle(workbook));
                     break;
 
                 case 3:
@@ -1725,6 +1847,9 @@ public class ExcellGenerator {
                     raw3cell2.setCellStyle(Styles.getCellBasicStyle(workbook));
                     Cell raw3cell3 = row115.createCell(2);
                     raw3cell3.setCellStyle(Styles.getCellBasicStyle(workbook));
+                    Cell raw3cell4 = row115.createCell(3);
+                    raw3cell4.setCellValue(excelRequest.getLawyerConclusion());
+                    raw3cell4.setCellStyle(Styles.getCellBasicStyle(workbook));
                     break;
 
                 case 4:
@@ -1735,6 +1860,9 @@ public class ExcellGenerator {
                     raw4cell2.setCellStyle(Styles.getCellBasicStyle(workbook));
                     Cell raw4cell3 = row115.createCell(2);
                     raw4cell3.setCellStyle(Styles.getCellBasicStyle(workbook));
+                    Cell raw4cell4 = row115.createCell(3);
+                    raw4cell4.setCellValue(excelRequest.getCommitteeLetter());
+                    raw4cell4.setCellStyle(Styles.getCellStyleRedSize(workbook));
                     break;
             }
 
@@ -1791,6 +1919,9 @@ public class ExcellGenerator {
                     raw22cell2.setCellStyle(Styles.getLeftCellStyle(workbook));
                     Cell raw22cell3 = row120.createCell(2);
                     raw22cell3.setCellStyle(Styles.getLeftCellStyle(workbook));
+                    Cell raw2cell4 = row120.createCell(3);
+                    raw2cell4.setCellValue(excelRequest.getUnderwritingLeadManager());
+                    raw2cell4.setCellStyle(Styles.getCellStyle(workbook));
                     break;
 
                 case 3:
@@ -1805,6 +1936,8 @@ public class ExcellGenerator {
                     raw3cell2.setCellStyle(Styles.getLeftCellStyle(workbook));
                     Cell raw3cell3 = row120.createCell(2);
                     raw3cell3.setCellStyle(Styles.getLeftCellStyle(workbook));
+                    Cell raw4cell4 = row120.createCell(3);
+                    raw4cell4.setCellStyle(Styles.getLeftCellStyle(workbook));
                     break;
 
                 case 5:
@@ -1820,6 +1953,9 @@ public class ExcellGenerator {
                     raw4cell2.setCellStyle(Styles.getLeftCellStyle(workbook));
                     Cell raw4cell3 = row120.createCell(2);
                     raw4cell3.setCellStyle(Styles.getLeftCellStyle(workbook));
+                    Cell raw6cell4 = row120.createCell(3);
+                    raw6cell4.setCellValue(excelRequest.getUnderwritingDepartmentHead());
+                    raw6cell4.setCellStyle(Styles.getCellStyle(workbook));
                     break;
 
                 case 7:
@@ -1836,6 +1972,9 @@ public class ExcellGenerator {
                     raw5cell2.setCellStyle(Styles.getLeftCellStyle(workbook));
                     Cell raw5cell3 = row120.createCell(2);
                     raw5cell3.setCellStyle(Styles.getLeftCellStyle(workbook));
+                    Cell raw8cell4 = row120.createCell(3);
+                    raw8cell4.setCellValue(excelRequest.getFinanceDepartmentDirector());
+                    raw8cell4.setCellStyle(Styles.getCellStyle(workbook));
                     break;
             }
 
